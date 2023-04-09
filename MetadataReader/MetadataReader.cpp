@@ -6,19 +6,8 @@
 
 int main()
 {
-    AudioTrack track;
-    track.setTitle("Imagine");
-    track.setArtist("John Lennon");
-    track.setAlbum("Imagine");
-    track.setGenre("Rock");
-    track.setYear("1971");
-
-    MetadataFilter filter;
-    filter.setTitle("Imagine");
-    filter.setArtist("John Lennon");
-    filter.setAlbum("Imagine");
-    filter.setGenre("Rock");
-    filter.setYear("1971");
+    AudioTrack     track ("Imagine", "John Lennon", "Imagine",   "Rock", "1971");
+    MetadataFilter filter("Imagine", "John Lennon", "Imagine 2", "Rock", "1972");
 
     filter.setTitlePart(true);
     filter.setArtistPart(true);

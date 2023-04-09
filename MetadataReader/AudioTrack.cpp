@@ -8,7 +8,9 @@ bool MetadataFilter::operator==(const AudioTrack& audioTrack) const {
         (!yearPart || year == audioTrack.getYear());
 }
 
-MetadataFilter::MetadataFilter()
+MetadataFilter::MetadataFilter(const std::string& title, const std::string& artist,
+    const std::string& album, const std::string& genre, const std::string& year) :
+    title(title), artist(artist), album(album), genre(genre), year(year) 
 {
 }
 
