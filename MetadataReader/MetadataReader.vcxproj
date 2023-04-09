@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioTrack.cpp" />
     <ClCompile Include="MetadataReader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AudioTrack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

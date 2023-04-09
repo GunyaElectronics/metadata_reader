@@ -2,10 +2,35 @@
 //
 
 #include <iostream>
+#include "AudioTrack.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    AudioTrack track;
+    track.setTitle("Imagine");
+    track.setArtist("John Lennon");
+    track.setAlbum("Imagine");
+    track.setGenre("Rock");
+    track.setYear("1971");
+
+    MetadataFilter filter;
+    filter.setTitle("Imagine");
+    filter.setArtist("John Lennon");
+    filter.setAlbum("Imagine");
+    filter.setGenre("Rock");
+    filter.setYear("1971");
+
+    filter.setTitlePart(true);
+    filter.setArtistPart(true);
+    filter.setAlbumPart(true);
+    filter.setGenrePart(true);
+    filter.setYearPart(true);
+
+    if (filter == track) {
+        std::cout << "filter == track" << std::endl;
+    } else {
+        std::cout << "filter != track" << std::endl;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
