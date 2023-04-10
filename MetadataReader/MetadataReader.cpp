@@ -1,8 +1,11 @@
 // MetadataReader.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
-#include "AudioTrack.h"
+#include <fstream>
+#include "AudioTrackMp3.h"
+
+using namespace std;
+using namespace AudioMetadata;
 
 int main()
 {
@@ -16,10 +19,18 @@ int main()
     filter.setYearPart(true);
 
     if (filter == track) {
-        std::cout << "filter == track" << std::endl;
+        cout << "filter == track" << std::endl;
     } else {
-        std::cout << "filter != track" << std::endl;
+        cout << "filter != track" << std::endl;
     }
+
+    ifstream file("D:\\song.mp3", std::ios::binary);
+
+    if (!file) {
+        cout << "Fle not found" << endl;
+    }
+
+    file.close();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -21,9 +21,15 @@
     <ClCompile Include="AudioTrack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AudioTrackMp3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioTrack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioTrackMp3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
