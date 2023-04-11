@@ -2,6 +2,10 @@
 //
 
 #include <fstream>
+#include <filesystem>
+#include <vector>
+#include <io.h>
+#include <fcntl.h>
 #include "AudioTrackMp3.h"
 
 using namespace std;
@@ -12,6 +16,8 @@ int main()
     AudioTrack     track ("Imagine", "John Lennon", "Imagine",   "Rock", "1971");
     MetadataFilter filter("Imagine", "John Lennon", "Imagine 2", "Rock", "1972");
 
+    _setmode(_fileno(stdout), _O_U16TEXT);
+
     filter.setTitlePart(true);
     filter.setArtistPart(true);
     filter.setAlbumPart(true);
@@ -19,18 +25,37 @@ int main()
     filter.setYearPart(true);
 
     if (filter == track) {
-        cout << "filter == track" << std::endl;
+        wcout << "filter == track" << std::endl;
     } else {
-        cout << "filter != track" << std::endl;
+        wcout << "filter != track" << std::endl;
     }
 
     ifstream file("D:\\song.mp3", std::ios::binary);
 
     if (!file) {
-        cout << "Fle not found" << endl;
+        wcout << "Fle not found" << endl;
     }
 
     file.close();
+
+    string folderPath = "D:\\Music";
+    vector<std::wstring> mp3Files;
+    int cnt = 1;
+    try {
+        for (const auto& entry : filesystem::directory_iterator(folderPath)) {
+            if (entry.is_regular_file() && entry.path().extension() == ".mp3") {
+                mp3Files.push_back(entry.path().wstring());
+            }
+        }
+    }
+    catch (const filesystem::filesystem_error& e) {
+        wcerr << "Error: " << e.what() << endl;
+    }
+
+    wcout << "MP3 files list:" << endl;
+    for (const auto& filname : mp3Files) {
+        wcout << "File " << cnt++ << ": " << filname << endl;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
