@@ -1,22 +1,45 @@
-// MetadataReader.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// MetadataReader.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <fstream>
 #include <filesystem>
 #include <vector>
+#include <string>
+#include <locale>
+#include <codecvt>
+#include <clocale>
 #include <io.h>
 #include <fcntl.h>
+#include <windows.h>
 #include "AudioTrackMp3.h"
 
 using namespace std;
 using namespace AudioMetadata;
 
-int main()
+int main(int argc, char* pArgs[])
 {
     AudioTrack     track ("Imagine", "John Lennon", "Imagine",   "Rock", "1971");
     MetadataFilter filter("Imagine", "John Lennon", "Imagine 2", "Rock", "1972");
 
     _setmode(_fileno(stdout), _O_U16TEXT);
+
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    wcout << "Arguments counter = " << argc << endl;
+
+    for (int i = 0; i < argc; i++) {
+        wcout << "Arg: " << pArgs[i] << endl;
+    }
+
+    size_t length;
+    mbstowcs_s(&length, nullptr, 0, pArgs[1], 0);
+    vector<wchar_t> wstr(length);
+    mbstowcs_s(nullptr, wstr.data(), length, pArgs[1], length - 1);
+
+    wstring path(wstr.data());
+
+    wcout << "Path in arguments is '" << path << "'\n";
 
     filter.setTitlePart(true);
     filter.setArtistPart(true);
@@ -38,7 +61,7 @@ int main()
 
     file.close();
 
-    string folderPath = "D:\\Music";
+    string folderPath = pArgs[1];
     vector<std::wstring> mp3Files;
     int cnt = 1;
     try {
