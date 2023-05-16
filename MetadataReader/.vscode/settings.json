@@ -2,5 +2,5 @@
     "files.associations": {
         "filesystem": "cpp"
     },
-    "cmake.sourceDirectory": "D:/DownloadsUser/metadata_reader/MetadataReader"
+    "cmake.sourceDirectory": "${workspaceFolder}/"
 }
