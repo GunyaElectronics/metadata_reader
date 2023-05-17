@@ -12,6 +12,10 @@ int main(int argc, char* pArgs[])
 
     wcout << "Arguments counter = " << argc << endl;
 
+    AudioTrack track2 = track;
+
+    track2.setYear("1972");
+
     filter.setTitlePart(true);
     filter.setArtistPart(true);
     filter.setAlbumPart(true);
@@ -22,6 +26,14 @@ int main(int argc, char* pArgs[])
         wcout << "filter == track" << std::endl;
     } else {
         wcout << "filter != track" << std::endl;
+    }
+
+    filter.setAlbumPart(false);
+
+    if (filter == track2) {
+        wcout << "filter == track2" << std::endl;
+    } else {
+        wcout << "filter != track2" << std::endl;
     }
 
     return 0;
